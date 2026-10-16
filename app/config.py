@@ -12,8 +12,10 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     # LLM
-    groq_api_key: str = ""
-    groq_model: str = "llama-3.3-70b-versatile"
+    # LLM：阿里云百炼 Qwen
+    dashscope_api_key: str = ""
+    qwen_model: str = "qwen-plus"
+    dashscope_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
     # Embeddings
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"

@@ -11,3 +11,19 @@ dist/
 build/
 trial.ipynb
 roadmap.md
+
+# 环境配置及其备份；允许上传不含密钥的配置示例
+.env.*
+!.env.example
+
+# macOS 文件
+.DS_Store
+
+# 本地配置、日志和数据库文件
+.streamlit/secrets.toml
+*.log
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+*.db-journal

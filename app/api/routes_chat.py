@@ -117,6 +117,8 @@ async def chat_stream(payload: ChatRequest):
 
             async for update in app.astream(inputs, stream_mode="updates"):
                 for node_name, node_output in update.items():
+                    if node_output is None:
+                        continue
                     final_state.update(node_output)
 
                     if node_name == "classify_query":

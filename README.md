@@ -141,8 +141,10 @@ Create a `.env` file in the repo root:
 
 ```env
 # LLM
-GROQ_API_KEY=your_groq_api_key
-GROQ_MODEL=llama-3.3-70b-versatile
+# 北京地域示例；其他地域请使用与 API Key 匹配的地址
+DASHSCOPE_API_KEY=your_dashscope_api_key
+QWEN_MODEL=qwen-plus
+DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 
 # Embeddings
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
@@ -165,15 +167,17 @@ MCP_DEFAULT_USER_ID=E001
 BACKEND_URL=http://localhost:8000
 ```
 
-### 3. Enable pgvector on your Postgres database
+### 3. Initialize the database
 
-```sql
-CREATE EXTENSION IF NOT EXISTS vector;
+Start PostgreSQL with pgvector support, then run from the project root:
+
+```bash
+python -m scripts.init_db
 ```
 
-Tables (`documents`, `threads`, `messages`) are created automatically by
-SQLAlchemy on first use; the MCP `tickets`/`employees` tables (SQLite) are
-created and migrated automatically on first tool call.
+This enables pgvector and creates missing `documents`, `threads`, and
+`messages` tables. Existing tables and data are preserved.
+MCP SQLite tables are initialized on first tool use.
 
 ### 4. Run the backend
 
